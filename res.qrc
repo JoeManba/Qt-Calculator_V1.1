@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/dict">
+        <file>ziku/liimoupinyin.dat</file>
+    </qresource>
+</RCC>

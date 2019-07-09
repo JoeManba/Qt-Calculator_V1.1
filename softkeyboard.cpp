@@ -348,7 +348,7 @@ void SoftKeyboard::numberLetterBtnSlot()
 void SoftKeyboard::matchChinese(QString pinyin)
 {
     tempChineseList.clear();//每次匹配中文都先清空之前的列表
-//    //获取对应拼音的汉字列表
+//    //获取自己定义拼音库中拼音的汉字列表
 //    tempChineseList = InputMethodCNManager::GetInstance()->matchPinyin(pinyin);
 
     //谷歌拼音

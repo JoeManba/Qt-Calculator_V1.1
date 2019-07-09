@@ -1,4 +1,5 @@
 #include "rpnmanager.h"
+#include <qmath.h>
 
 //逆波兰表达式计算
 //支持的双目运算符有:( ) ^ * / % + - << >> #(a#b 取a的第b个字节 b[0,3] 0从低位开始)

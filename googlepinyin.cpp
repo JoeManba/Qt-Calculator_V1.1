@@ -2,7 +2,7 @@
 #include <QDateTime>
 #include <QSettings>
 #include <QDebug>
-#include "pinyin/pinyinime.h"
+#include "head/pinyinime.h"
 
 using namespace ime_pinyin;
 

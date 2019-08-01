@@ -298,9 +298,17 @@ bool RPNManager:: checkRPN(QVector<QString>& rpns,QString &errorMsg)
                 }
                 else   //说明是双目运算符
                 {
-                    if(result.empty()) return false;
+                    if(result.empty())
+                    {
+                        errorMsg = "Wrong formula";
+                        return false;
+                    }
                     QString topItem1 = result.top(); result.pop();  //弹出栈顶元素
-                    if (result.empty())return false;
+                    if (result.empty())
+                    {
+                        errorMsg = "Wrong formula";
+                        return false;
+                    }
                     QString topItem2 = result.top(); result.pop();  //弹出栈顶元素
                     result.push("(" + topItem2 + rpns[i] + topItem1 + ")");   //压入栈
                 }
@@ -309,11 +317,12 @@ bool RPNManager:: checkRPN(QVector<QString>& rpns,QString &errorMsg)
         //看看result最后是不是还剩一个元素
         result.pop();
         if (result.empty())return true;
-        errorMsg = "formula is wrong,please check";
+        errorMsg = "Wrong formula";
         return false;
     }
     catch (...)
     {
+        errorMsg = "Wrong formula";
         return false;
     }
 

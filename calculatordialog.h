@@ -23,8 +23,10 @@ public:
 
 private:
     QLabel *resulLabel;//结果显示区
-    CustomEdit *inputEdit;//公式编辑区
+    QLineEdit *inputEdit;//公式编辑区
     SoftKeyboard *keyboard ;//软键盘
+protected:
+    bool eventFilter(QObject *watched, QEvent *event);
 private slots:
     void calculatorResult();
     void showKeyboard();

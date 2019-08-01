@@ -18,7 +18,7 @@ public:
     void SearchCN(const QString &gemfield);
     void BinarySearchEN(const QString &gemfield);
     void Matching(const QString &gemfield, bool isEn = true);
-    QStringList HanziModel;
+    QStringList ChinieseModel;
 
 private:
     QStringList lstEN;

@@ -8,7 +8,7 @@ using namespace ime_pinyin;
 
 GooglePinyinManager::GooglePinyinManager()
 {
-    HanziModel.clear();
+    ChinieseModel.clear();
 
     QSettings setter("./dict/pinyinEx.ini", QSettings::IniFormat);
 
@@ -31,13 +31,13 @@ GooglePinyinManager::GooglePinyinManager()
 GooglePinyinManager::~GooglePinyinManager()
 {
     lstEN.clear();
-    HanziModel.clear();
+    ChinieseModel.clear();
     im_close_decoder();
 }
 
 void GooglePinyinManager::SearchCN(const QString &gemfield)
 {
-    HanziModel.clear();
+    ChinieseModel.clear();
     if (gemfield == "")
     {
         return;
@@ -64,7 +64,7 @@ void GooglePinyinManager::SearchCN(const QString &gemfield)
     for (int i = 0; i < num; i++)
     {
         im_get_candidate(i, buf, 32);
-        HanziModel << QString::fromUtf16(buf);
+        ChinieseModel << QString::fromUtf16(buf);
     }
 }
 
@@ -98,7 +98,7 @@ void GooglePinyinManager::BinarySearchEN(const QString &gemfield)
         if (idx >= lstEN.size())
             break;
         if (lstEN[idx].startsWith(gemfield, Qt::CaseInsensitive))
-            HanziModel.append(lstEN[idx]);
+            ChinieseModel.append(lstEN[idx]);
         else
             break;
         idx++;
@@ -107,7 +107,7 @@ void GooglePinyinManager::BinarySearchEN(const QString &gemfield)
 
 void GooglePinyinManager::Matching(const QString &gemfield, bool isEn)
 {
-    HanziModel.clear();
+    ChinieseModel.clear();
     if (isEn)
     {
         BinarySearchEN(gemfield);

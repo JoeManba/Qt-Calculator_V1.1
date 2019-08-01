@@ -7,14 +7,14 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <qlineedit.h>
-
+#include <QDesktopWidget>
 #include <QString>
 #include <QDebug>
+#define WINDOW_HEIGHT QApplication::desktop()->availableGeometry().height()//QApplication::desktop()->screenGeometry().height()
 
 CalculatorDialog::CalculatorDialog(QWidget *parent) :
     QDialog(parent)
 {
-
 
     QWidget *titleBar=new QWidget(this);
     titleBar->setFixedHeight(60);
@@ -42,10 +42,11 @@ CalculatorDialog::CalculatorDialog(QWidget *parent) :
     QLabel *inputLabel = new QLabel("请输入：",this);
     inputLabel->setStyleSheet("color:white;"
                               "font-size:32px");
-    inputEdit = new CustomEdit(this);
+    inputEdit = new QLineEdit(this);
     inputEdit->setFixedSize(500,35);
     inputEdit->setStyleSheet("color:white;"
                               "font-size:26px");
+    inputEdit->installEventFilter(this);
     keyboard = new SoftKeyboard(this->inputEdit);
 
     QPushButton *calculateBtn = new QPushButton("计算",this);
@@ -67,9 +68,8 @@ CalculatorDialog::CalculatorDialog(QWidget *parent) :
     calculatorLayout->addWidget(resulLabel,1,1);
 
     connect(calculateBtn,SIGNAL(pressed()),this,SLOT(calculatorResult()));
-//    connect(inputEdit,SIGNAL(focusInEvent(QFocusEvent *)),this,SLOT(showKeyboard()));
-    connect(inputEdit,SIGNAL(focusInEdit()),this,SLOT(showKeyboard()));
-//    connect(inputEdit,SIGNAL(focusOutEdit()),this,SLOT(hidenKeyboard()));
+//    connect(inputEdit,SIGNAL(focusInEdit()),this,SLOT(showKeyboard()));
+
 
     /*----MainLayout-----*/
     QVBoxLayout *mainLayout=new QVBoxLayout;
@@ -111,17 +111,35 @@ void CalculatorDialog:: calculatorResult(){
         resulLabel->setStyleSheet("color:red;"
                                   "font-size:32px");
     }
-
-
+    hidenKeyboard();
 }
+
+bool CalculatorDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == inputEdit)
+    {
+        if(event->type() == QEvent::FocusIn)
+        {
+            showKeyboard();
+        }
+        else if(event->type() == QEvent::FocusOut)
+        {
+
+        }
+
+    }
+
+    return QWidget::eventFilter(watched, event);
+}
+
 int i=0;
 void CalculatorDialog:: showKeyboard(){
     QString temStr;
     keyboard->show();
-//    qDebug("Fouce in:"+temStr.setNum(i++));
     qDebug()<<"Fouce in:"<<temStr.setNum(i++);
-
+    keyboard->move(keyboard->x(), WINDOW_HEIGHT - keyboard->height());
 }
+
 int j=0;
 void CalculatorDialog:: hidenKeyboard(){
     QString temStr;

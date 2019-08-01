@@ -47,7 +47,6 @@ FORMS += \
         calculatordialog.ui
 
 RESOURCES += \
-    res.qrc\
 
 
 

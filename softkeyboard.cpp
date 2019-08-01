@@ -353,10 +353,10 @@ void SoftKeyboard::matchChinese(QString pinyin)
 
     //谷歌拼音
     googlePinyin->SearchCN(pinyin);
-    tempChineseList = googlePinyin->HanziModel;
-    for(int i=googlePinyin->HanziModel.size()-1;i>=0;i--)
+    tempChineseList = googlePinyin->ChinieseModel;
+    for(int i=googlePinyin->ChinieseModel.size()-1;i>=0;i--)
     {
-        tempChineseList.append(googlePinyin->HanziModel.at(i));
+        tempChineseList.append(googlePinyin->ChinieseModel.at(i));
     }
 
 
@@ -635,7 +635,7 @@ void SoftKeyboard:: setSymbolsEN()
 {
     QStringList symbolsENList;
     symbolsENList<<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"0"
-                <<"+"<<"-"<<"/"<<"%"<<"<<"<<">>"<<"#"<<"&&"<<"("<<")"
+                <<"+"<<"-"<<"*"<<"/"<<"%"<<"<<"<<">>"<<"#"<<"("<<")"
                 <<"sin"<<"cos"<<"exp"<<"sqrt"<<"log"<<"ln"<<"abs"<<"tg"
                 <<"ctg"<<"asin"<<"acos"<<"atg"<<"↑"<<"↓"<<"←"<<"→";
     for(int i=0;i<36;i++)
@@ -741,7 +741,7 @@ void SoftKeyboard::enterSlot()
 void SoftKeyboard::quitBtnSlot()
 {
     //退出时清空所有缓存
-    lineEdit->clear();
+//    lineEdit->clear();
     hideInputDiaplayArea();
     this->close();
 }

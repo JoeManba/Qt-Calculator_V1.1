@@ -121,6 +121,7 @@ bool CalculatorDialog::eventFilter(QObject *watched, QEvent *event)
         if(event->type() == QEvent::FocusIn)
         {
             showKeyboard();
+            inputEdit->clearFocus();//防止inputEdit重新获得焦点再一次激发事件
         }
         else if(event->type() == QEvent::FocusOut)
         {

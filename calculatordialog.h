@@ -3,7 +3,6 @@
 
 #include "customedit.h"
 #include "softkeyboard.h"
-
 #include <QDialog>
 #include <qlabel.h>
 #include <qlineedit.h>

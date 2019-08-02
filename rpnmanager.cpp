@@ -342,14 +342,14 @@ bool RPNManager::splitFormula(QString exp,QVector<QString> &formaulaVec,QString 
 
     for(int i=0; i<exp.length(); i++)
     {
-        if(isBadChar(exp[i]))
+        if(isBadChar(exp[i]))//非法字符校验
         {
             errorMsg = "The formula contains illegality characters: "+QString(exp[i]);
 
             return false;
         }
 
-        if( isDigitOrDot(exp[i]))
+        if( isDigitOrDot(exp[i]))//数字或者小数点
         {
             if(!letter.isEmpty())
             {

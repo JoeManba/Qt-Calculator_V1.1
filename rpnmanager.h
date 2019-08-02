@@ -7,7 +7,7 @@
 
 #include <QMutex>
 #include <QQueue>
-#include <qmath.h>
+
 class RPNManager
 {
 private:
